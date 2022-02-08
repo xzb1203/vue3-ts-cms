@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import HelloWorld from '@components/HelloWorld.vue'
+import { computed } from 'vue'
+import { useUserStore } from '@store/index'
+const { setTestData } = useUserStore()
+const testData = computed(() => useUserStore().testData)
 </script>
-
 <template>
-  <el-button>按钮</el-button>
-  <img alt="Vue logo" src="./assets/logo.png" class="m-auto" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <el-button @click="setTestData('啥情况')">改变数据</el-button>
+  pinia数据: {{ testData }}
+  <div id="app">
+    <router-link to="/login">登录</router-link>
+    <router-link to="/main">首页</router-link>
+    <router-view> </router-view>
+  </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

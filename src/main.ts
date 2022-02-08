@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
-import 'virtual:windi.css'
 import App from './App.vue'
+import router from './router'
+import piniaStore from './store'
 
-createApp(App).mount('#app')
+import 'virtual:windi.css'
+
+createApp(App).use(router).use(piniaStore).mount('#app')
