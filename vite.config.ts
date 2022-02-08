@@ -1,13 +1,24 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import WindiCSS from 'vite-plugin-windicss'
 export default defineConfig({
-  plugins: [vue()],
-
-  base: './', // 类似publicPath，'./'避免打包访问后空白页面，要加上，不然线上也访问不了
+  plugins: [
+    vue(),
+    WindiCSS(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
+    })
+  ],
+  base: './',
   resolve: {
     alias: {
-      // 如果报错__dirname找不到，需要安装node,执行npm install @types/node --save-dev
       '@': path.resolve(__dirname, 'src'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@components': path.resolve(__dirname, 'src/components'),
