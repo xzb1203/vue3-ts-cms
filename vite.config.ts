@@ -6,6 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
 export default defineConfig({
+  base: './',
   plugins: [
     vue(),
     WindiCSS(),
@@ -16,7 +17,6 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     })
   ],
-  base: './',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -25,6 +25,15 @@ export default defineConfig({
       '@images': path.resolve(__dirname, 'src/assets/images'),
       '@views': path.resolve(__dirname, 'src/views'),
       '@store': path.resolve(__dirname, 'src/store')
+    }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://152.136.185.210:4000/',
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        changeOrigin: true
+      }
     }
   }
 })
