@@ -1,12 +1,51 @@
 import { defineStore } from 'pinia'
+import { UserState } from './types'
+import localCache from '@/utils/cache'
+import router from '@/router'
+
+import {
+  accountLoginRequest,
+  getUserById,
+  getUserMenus
+} from '@/service/login/login'
+
 export const useUserStore = defineStore('user', {
-  state: (): any => ({
-    testData: '测试数据'
+  state: (): UserState => ({
+    token: '',
+    userInfo: {},
+    userMenus: {},
+    permissions: []
   }),
-  getters: {},
   actions: {
-    setTestData(data: any) {
-      this.testData = data
+    setToken(token: string) {
+      this.token = token
+    },
+    setUserInfo(userInfo: any) {
+      this.userInfo = userInfo
+    },
+    setUserMenus(userMenus: any) {
+      this.userMenus = userMenus
+    },
+    async setAccountLoginAction(account: { name: string; password: string }) {
+      //用户登录
+      const loginResult = await accountLoginRequest(account)
+      const { id, token } = loginResult
+      this.setToken(token)
+      localCache.setCache('token', token)
+
+      //获取用户信息
+      const userInfo = await getUserById(id)
+      this.setUserInfo(userInfo)
+      localCache.setCache('userInfo', userInfo)
+
+      // 3.用户菜单树
+      const userMenus = await getUserMenus(userInfo.role.id)
+      this.setUserMenus(userMenus)
+      localCache.setCache('userMenus', userMenus)
+      console.log(userMenus)
+
+      // 跳转到首页
+      router.push('/main')
     }
   }
 })

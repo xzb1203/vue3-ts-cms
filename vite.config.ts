@@ -11,7 +11,10 @@ export default defineConfig({
     vue(),
     WindiCSS(),
     AutoImport({
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      dts: 'src/auto-imports.d.ts',
+      //自动导入vue常用api
+      imports: ['vue']
     }),
     Components({
       resolvers: [ElementPlusResolver()]
