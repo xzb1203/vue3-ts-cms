@@ -27,7 +27,6 @@ class HYRequest {
   interceptorHooks?: InterceptorHooks
   showLoading: boolean
   loading?: any
-  // loading?: ILoadingInstance
   instance: AxiosInstance
 
   constructor(options: HYRequestConfig) {

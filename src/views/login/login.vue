@@ -1,7 +1,20 @@
 <template>
-  <div>登录页</div>
+  <div class="login">
+    <login-panel />
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import LoginPanel from './cpns/login-panel.vue'
+</script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/img/login-bg.svg');
+}
+</style>
