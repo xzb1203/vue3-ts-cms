@@ -23,7 +23,6 @@ export const useUserStore = defineStore('user', {
     setUserMenus(userMenus: any) {
       this.userMenus = userMenus
       console.log(userMenus)
-
       // 根据菜单映射路由
       // const routes = menuMapToRoutes(userMenus)
       // routes.forEach((route) => {
@@ -46,10 +45,22 @@ export const useUserStore = defineStore('user', {
       const userMenus = await getUserMenus(userInfo.role.id)
       this.setUserMenus(userMenus)
       localCache.setCache('userMenus', userMenus)
-      console.log(userMenus)
-
       // 跳转到首页
       router.push('/main')
+    },
+    loadLocalCache() {
+      const token = localCache.getCache('token')
+      if (token) {
+        this.setToken(token)
+      }
+      const userInfo = localCache.getCache('userInfo')
+      if (userInfo) {
+        this.setUserInfo(userInfo)
+      }
+      const userMenus = localCache.getCache('userMenus')
+      if (userMenus) {
+        this.setUserMenus(userMenus)
+      }
     }
   }
 })

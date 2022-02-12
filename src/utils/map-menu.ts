@@ -6,15 +6,15 @@ let firstRoute: RouteRecordRaw | undefined = undefined
 
 export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = []
-
+  console.log(userMenus)
   // 1.读取本地所有的路由
   const localRoutes: RouteRecordRaw[] = []
-  const routeFiles = require.context('../router/main', true, /\.ts/)
-  routeFiles.keys().forEach((key) => {
-    if (key.indexOf('./main.ts') !== -1) return
-    const route = require('../router/main' + key.split('.')[1])
-    localRoutes.push(route.default)
-  })
+  // const routeFiles = require.context('../router/main', true, /\.ts/)
+  // routeFiles.keys().forEach((key) => {
+  //   if (key.indexOf('./main.ts') !== -1) return
+  //   const route = require('../router/main' + key.split('.')[1])
+  //   localRoutes.push(route.default)
+  // })
 
   // 2.菜单的映射
   const _recurseGetRoute = (menus: any[]) => {
