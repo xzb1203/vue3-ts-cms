@@ -22,7 +22,7 @@
           </template>
 
           <template v-for="subitem in item.children" :key="subitem.id">
-            <el-menu-item :index="subitem.id + ''">
+            <el-menu-item :index="subitem.id + ''" @click="handleItemClick(subitem)">
               {{ subitem.icon }}
               <el-icon v-if="subitem.icon">
                 <component :is="subitem.icon.replace('el-icon-', '')"></component>
@@ -31,7 +31,7 @@
             </el-menu-item>
           </template>
         </el-sub-menu>
-        <el-menu-item :index="item.id + ''" v-else>
+        <el-menu-item :index="item.id + ''" v-else @click="handleItemClick(item)">
           <span>{{ item.name }}</span>
         </el-menu-item>
       </template>
@@ -41,15 +41,25 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
+import { useRouter } from 'vue-router'
 import localCache from '@/utils/cache'
+
 const props = defineProps({
   collapse: {
     type: Boolean as PropType<boolean>,
     default: false
   }
 })
+const router = useRouter()
 const menus = localCache.getCache('userMenus')
 const currentItemId = ref('39')
+const handleItemClick = (item: any) => {
+  console.log(item)
+  console.log(router)
+  router.push({
+    path: item.url ?? '/not-found'
+  })
+}
 </script>
 <style scoped lang="scss">
 .nav-menu {

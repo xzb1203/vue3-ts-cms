@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from 'vue'
 import { Account } from '../types'
 import localCache from '@/utils/cache'
 import { useUserStore } from '@store'

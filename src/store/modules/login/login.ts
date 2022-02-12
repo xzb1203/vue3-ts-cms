@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { UserState } from './types'
 import localCache from '@/utils/cache'
 import router from '@/router'
-import { menuMapToRoutes, menuMapToPermissions } from '@/utils/map-menu'
+import { menuMapToRoutes } from '@/utils/map-menu'
 
 import { accountLoginRequest, getUserById, getUserMenus } from '@/service/login/login'
 
@@ -22,12 +22,12 @@ export const useUserStore = defineStore('user', {
     },
     setUserMenus(userMenus: any) {
       this.userMenus = userMenus
-      console.log(userMenus)
       // 根据菜单映射路由
-      // const routes = menuMapToRoutes(userMenus)
-      // routes.forEach((route) => {
-      //   router.addRoute('main', route)
-      // })
+      const routes = menuMapToRoutes(userMenus)
+      routes.forEach((route: any) => {
+        router.addRoute('main', route)
+      })
+      console.log(routes)
     },
     async setAccountLoginAction(account: { name: string; password: string }) {
       //用户登录
