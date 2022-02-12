@@ -15,12 +15,18 @@
       <template v-for="item in menus" :key="item.id">
         <el-sub-menu :index="item.id + ''" v-if="item.children && item.children.length">
           <template #title>
-            <el-icon><icon-menu /></el-icon>
+            <el-icon :size="20">
+              <component :is="item.icon.replace('el-icon-', '')"></component>
+            </el-icon>
             <span>{{ item.name }}</span>
           </template>
 
           <template v-for="subitem in item.children" :key="subitem.id">
             <el-menu-item :index="subitem.id + ''">
+              {{ subitem.icon }}
+              <el-icon v-if="subitem.icon">
+                <component :is="subitem.icon.replace('el-icon-', '')"></component>
+              </el-icon>
               <span>{{ subitem.name }}</span>
             </el-menu-item>
           </template>
@@ -37,15 +43,23 @@
 <script setup lang="ts">
 import { Location, Document, Menu as IconMenu, Setting } from '@element-plus/icons-vue'
 import localCache from '@/utils/cache'
-const menus = localCache.getCache('userMenus')
-const currentItemId = ref('39')
-
 const props = defineProps({
   collapse: {
     type: Boolean as PropType<boolean>,
     default: false
   }
 })
+const menus = localCache.getCache('userMenus')
+const currentItemId = ref('39')
+import * as Icons from '@element-plus/icons-vue'
+console.log(Icons)
+
+const icons = {
+  Location,
+  Document,
+  Setting
+}
+console.log(icons)
 </script>
 <style scoped lang="scss">
 .nav-menu {
