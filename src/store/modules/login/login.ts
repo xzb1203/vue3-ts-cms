@@ -23,11 +23,11 @@ export const useUserStore = defineStore('user', {
     setUserMenus(userMenus: any) {
       this.userMenus = userMenus
       // 根据菜单映射路由
-      const routes = menuMapToRoutes(userMenus)
-      routes.forEach((route: any) => {
-        router.addRoute('main', route)
-      })
-      console.log(routes)
+      // const routes = menuMapToRoutes(userMenus)
+      // routes.forEach((route: any) => {
+      //   router.addRoute('main', route)
+      // })
+      // console.log(routes)
     },
     async setAccountLoginAction(account: { name: string; password: string }) {
       //用户登录

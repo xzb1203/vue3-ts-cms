@@ -13,66 +13,14 @@ export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
   for (let key in routeFiles) {
     routePath.push(key)
   }
-  localRoutes = [
-    {
-      path: '/main/analysis/dashboard',
-      name: 'dashboard',
-      children: []
-    },
-    {
-      path: '/main/analysis/overview',
-      name: 'overview',
-      children: []
-    },
-    {
-      path: '/main/product/category',
-      name: 'category',
-      children: []
-    },
-    {
-      path: '/main/product/goods',
-      name: 'goods',
-      children: []
-    },
-    {
-      path: '/main/story/chat',
-      name: 'chat',
-      children: []
-    },
-    {
-      path: '/main/story/list',
-      name: 'list',
-      children: []
-    },
-    {
-      path: '/main/system/department',
-      name: 'department',
-      children: []
-    },
-    {
-      path: '/main/system/menu',
-      name: 'menu',
-      children: []
-    },
-    {
-      path: '/main/system/role',
-      name: 'role',
-      children: []
-    },
-    {
-      path: '/main/system/user',
-      name: 'user',
-      children: []
-    }
-  ]
-  // routePath.forEach(async (key: string) => {
-  //   if (key.indexOf('./main.ts') !== -1) return
-  //   let cpnsName = key.split('.')[2]
-  //   const route = await import('..' + cpnsName)
-  //   localRoutes.push(route.default)
-  // })
-  // console.log(localRoutes, '为什么')
 
+  routePath.forEach(async (key: string) => {
+    if (key.indexOf('./main.ts') !== -1) return
+    let cpnsName = key.split('.')[2]
+    const route = await import('..' + cpnsName)
+    localRoutes.push(route.default)
+    console.log(localRoutes, '为什么')
+  })
   // 2.菜单的映射
   const _recurseGetRoute = (menus: any[]) => {
     for (const menu of menus) {
@@ -89,6 +37,7 @@ export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
     }
   }
   _recurseGetRoute(userMenus)
+
   return routes
 }
 
