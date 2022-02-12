@@ -1,7 +1,7 @@
 <template>
   <div class="nav-header">
     <el-icon class="menu-icon" @click="handleFoldClick">
-      <component :is="isFold ? 'fold' : 'expand'"></component>
+      <component :is="isFold ? 'expand' : 'fold'"></component>
     </el-icon>
     <div class="content">
       <!-- <hy-breadcrumb :breadcrumbs="breadcrumbs" />

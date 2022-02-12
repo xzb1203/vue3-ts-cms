@@ -70,7 +70,9 @@ const currentItemId = ref('39')
       color: white;
     }
   }
-
+  .el-menu {
+    border-right: none;
+  }
   // 目录
   .el-submenu {
     background-color: #001529 !important;
