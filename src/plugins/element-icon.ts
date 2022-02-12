@@ -1,10 +1,12 @@
 import { App } from 'vue'
-import { ChatLineRound, Setting, Goods, Monitor } from '@element-plus/icons-vue'
+import { ChatLineRound, Setting, Goods, Monitor, Fold, Expand } from '@element-plus/icons-vue'
 const icons = {
   ChatLineRound,
   Setting,
   Goods,
-  Monitor
+  Monitor,
+  Fold,
+  Expand
 }
 
 // 注册全局组件

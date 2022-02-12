@@ -32,7 +32,6 @@
           </template>
         </el-sub-menu>
         <el-menu-item :index="item.id + ''" v-else>
-          <el-icon><icon-menu /></el-icon>
           <span>{{ item.name }}</span>
         </el-menu-item>
       </template>
@@ -41,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { Location, Document, Menu as IconMenu, Setting } from '@element-plus/icons-vue'
+import { PropType } from 'vue'
 import localCache from '@/utils/cache'
 const props = defineProps({
   collapse: {
@@ -51,15 +50,6 @@ const props = defineProps({
 })
 const menus = localCache.getCache('userMenus')
 const currentItemId = ref('39')
-import * as Icons from '@element-plus/icons-vue'
-console.log(Icons)
-
-const icons = {
-  Location,
-  Document,
-  Setting
-}
-console.log(icons)
 </script>
 <style scoped lang="scss">
 .nav-menu {
@@ -69,7 +59,7 @@ console.log(icons)
   .logo {
     display: flex;
     height: 28px;
-    padding: 12px 10px 8px 10px;
+    padding: 12px 10px 27px 10px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;

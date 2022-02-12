@@ -6,7 +6,7 @@
       </el-aside>
       <el-container class="page">
         <el-header class="page-header">
-          <nav-header />
+          <nav-header @fooldChange="handleFoldChange" />
         </el-header>
         <el-main class="page-content">
           <div class="content">
@@ -22,6 +22,10 @@
 import NavMenu from '@/components/nav-menu'
 import NavHeader from '@/components/nav-header'
 const isCollapse = ref(false)
+const handleFoldChange = (isFold: boolean) => {
+  isCollapse.value = isFold
+  console.log(isFold)
+}
 </script>
 
 <style lang="scss" scoped>
