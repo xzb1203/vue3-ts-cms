@@ -1,10 +1,5 @@
 <template>
-  <el-form
-    :model="account"
-    label-width="60px"
-    ref="formRef"
-    :rules="accountRules"
-  >
+  <el-form :model="account" label-width="60px" ref="formRef" :rules="accountRules">
     <el-form-item label="账号" prop="name">
       <el-input v-model="account.name" />
     </el-form-item>
