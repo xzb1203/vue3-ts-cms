@@ -9,7 +9,7 @@
           <nav-header @fooldChange="handleFoldChange" />
         </el-header>
         <el-main class="page-content">
-          <div class="content">
+          <div class="content p-5">
             <router-view></router-view>
           </div>
         </el-main>
