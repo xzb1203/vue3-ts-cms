@@ -4,13 +4,15 @@
       <component :is="isFold ? 'expand' : 'fold'"></component>
     </el-icon>
     <div class="content">
-      <!-- <hy-breadcrumb :breadcrumbs="breadcrumbs" />
-      <nav-info /> -->
+      <span>面包屑</span>
+      <nav-info></nav-info>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import NavInfo from './nav-info.vue'
+
 const emit = defineEmits(['fooldChange'])
 let isFold = ref(false)
 const handleFoldClick = () => {

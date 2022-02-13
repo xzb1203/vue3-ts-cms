@@ -46,6 +46,7 @@ const handleFoldChange = (isFold: boolean) => {
   height: calc(100% - 48px);
 
   .content {
+    height: 100%;
     background-color: #fff;
     border-radius: 8px;
   }

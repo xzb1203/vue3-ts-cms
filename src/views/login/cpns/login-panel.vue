@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-400px">
+  <div class="flex flex-col w-400px -mt-150px">
     <h1 class="text-center text-26px mb-15px">后台管理系统</h1>
     <el-tabs type="border-card" v-model="currentTab" stretch>
       <el-tab-pane label="账号登录" name="account">
