@@ -1,5 +1,6 @@
 <template>
   <div class="flex">
+    <global-test></global-test>
     <svg-icon :name="item" v-for="item in iconNames"></svg-icon>
   </div>
   <div class="overview">
