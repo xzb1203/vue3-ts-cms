@@ -1,18 +1,15 @@
 <template>
+  <div class="flex">
+    <svg-icon :name="item" v-for="item in iconNames"></svg-icon>
+  </div>
   <div class="overview">
     <h2>overview</h2>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'overview',
-  setup() {
-    return {}
-  }
-})
+<script lang="ts" setup>
+import SvgIcon from '@/components/svg-icon'
+import iconNames from '@/assets/icons/svg'
 </script>
 
 <style scoped></style>
