@@ -11,9 +11,10 @@
       :collapse="collapse"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
+      router
     >
       <template v-for="item in menus" :key="item.id">
-        <el-sub-menu :index="item.id + ''" v-if="item.children && item.children.length">
+        <el-sub-menu :index="item.url" v-if="item.children && item.children.length">
           <template #title>
             <el-icon :size="20">
               <component :is="item.icon.replace('el-icon-', '')"></component>
@@ -22,7 +23,7 @@
           </template>
 
           <template v-for="subitem in item.children" :key="subitem.id">
-            <el-menu-item :index="subitem.id + ''" @click="handleItemClick(subitem)">
+            <el-menu-item :index="subitem.url">
               {{ subitem.icon }}
               <el-icon v-if="subitem.icon">
                 <component :is="subitem.icon.replace('el-icon-', '')"></component>
@@ -31,7 +32,7 @@
             </el-menu-item>
           </template>
         </el-sub-menu>
-        <el-menu-item :index="item.id + ''" v-else @click="handleItemClick(item)">
+        <el-menu-item :index="item.url" v-else>
           <span>{{ item.name }}</span>
         </el-menu-item>
       </template>
@@ -52,14 +53,7 @@ const props = defineProps({
 })
 const router = useRouter()
 const menus = localCache.getCache('userMenus')
-const currentItemId = ref('39')
-const handleItemClick = (item: any) => {
-  console.log(item)
-  console.log(router)
-  router.push({
-    path: item.url ?? '/not-found'
-  })
-}
+const currentItemId = ref('/main/analysis/overview')
 </script>
 <style scoped lang="scss">
 .nav-menu {
