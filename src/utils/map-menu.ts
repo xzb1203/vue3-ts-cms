@@ -48,7 +48,11 @@ export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
 }
 
 // /main/system/role  -> type === 2 对应menu
-export function pathMapToMenu(userMenus: any[], currentPath: string, breadcrumbs?: IBreadcrumb[]): any {
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadcrumb[]
+): any {
   for (const menu of userMenus) {
     if (menu.type === 1) {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)

@@ -6,17 +6,29 @@
           <el-col :span="8" v-bind="colLayout" :rules="item.rules" :style="itemStyle">
             <el-form-item :label="item.label">
               <template v-if="item.type === 'input' || item.type === 'password'">
-                <el-input :placeholder="item.placeholder" :show-password="item.type === 'password'"></el-input>
+                <el-input
+                  :placeholder="item.placeholder"
+                  :show-password="item.type === 'password'"
+                  v-model="formData[item.field]"
+                ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">
-                <el-select :placeholder="item.placeholder" class="w-full">
+                <el-select
+                  :placeholder="item.placeholder"
+                  class="w-full"
+                  v-model="formData[item.field]"
+                >
                   <el-option v-for="option in item.options" :value="option.value">
                     {{ option.title }}
                   </el-option>
                 </el-select>
               </template>
               <template v-else-if="item.type === 'datepicker'">
-                <el-date-picker style="width: 100%" v-bind="item.otherOptions"></el-date-picker>
+                <el-date-picker
+                  v-model="formData[item.field]"
+                  style="width: 100%"
+                  v-bind="item.otherOptions"
+                ></el-date-picker>
               </template>
             </el-form-item>
           </el-col>
@@ -31,6 +43,10 @@ import { PropType } from 'vue'
 import { IFormItem } from '../types'
 
 const props = defineProps({
+  formData: {
+    type: Object,
+    required: true
+  },
   formItems: {
     type: Array as PropType<IFormItem[]>,
     default: () => []
