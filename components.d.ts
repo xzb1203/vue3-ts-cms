@@ -41,6 +41,7 @@ declare module 'vue' {
     NavHeader: typeof import('./src/components/nav-header/src/nav-header.vue')['default']
     NavInfo: typeof import('./src/components/nav-header/src/nav-info.vue')['default']
     NavMenu: typeof import('./src/components/nav-menu/src/nav-menu.vue')['default']
+    PageSearch: typeof import('./src/components/page-search/src/page-search.vue')['default']
     Src: typeof import('./src/components/svg-icon/src/index.vue')['default']
     SvgIcon: typeof import('./src/components/svg-icon/src/svg-icon.vue')['default']
   }
