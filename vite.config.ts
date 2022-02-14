@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import OptimizationPersist from 'vite-plugin-optimize-persist'
+import PkgConfig from 'vite-plugin-package-config'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
@@ -21,6 +23,10 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()]
     }),
+    //启动优化
+    PkgConfig(),
+    OptimizationPersist(),
+    //svg自动注册
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
       symbolId: 'icon-[dir]-[name]'
