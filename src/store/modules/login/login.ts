@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { UserState } from './types'
 import localCache from '@/utils/cache'
 import router from '@/router'
-import { menuMapToRoutes } from '@/utils/map-menu'
+// import { menuMapToRoutes } from '@/utils/map-menu'
 
 import { accountLoginRequest, getUserById, getUserMenus } from '@/service/login/login'
 
