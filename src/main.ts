@@ -6,8 +6,8 @@ import 'virtual:svg-icons-register'
 import { registerElementIcon } from '@/plugins'
 import '@/global-components'
 import 'virtual:windi.css'
-import components from '@/global-components'
+import globalComponents from '@/global-components'
 const app = createApp(App)
-app.use(router).use(piniaStore).use(components).mount('#app')
+app.use(router).use(piniaStore).use(globalComponents).mount('#app')
 registerElementIcon(app)
 useUserStore().loadLocalCache()

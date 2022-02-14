@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import localCache from '@/utils/cache'
 
 const props = defineProps({
@@ -51,9 +51,10 @@ const props = defineProps({
     default: false
   }
 })
-const router = useRouter()
+const route = useRoute()
 const menus = localCache.getCache('userMenus')
-const currentItemId = ref('/main/analysis/overview')
+console.log(route.path)
+const currentItemId = ref(route.path ?? '/main/analysis/overview')
 </script>
 <style scoped lang="scss">
 .nav-menu {

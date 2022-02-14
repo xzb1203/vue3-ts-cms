@@ -41,81 +41,24 @@ export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
   return routes
 }
 
-// export function mapPathToBreadpaths(currentPath: string, userMenus: any[]) {
-//   const breadPaths: IBreadcrumb[] = []
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+  const breadcrumbs: IBreadcrumb[] = []
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
+}
 
-//   const _recurseGetPath = (menus: any[]): any => {
-//     for (const menu of menus) {
-//       if (menu.type === 1) {
-//         const foundMenu = _recurseGetPath(menu.children)
-//         if (foundMenu) {
-//           breadPaths.push({ name: menu.name, path: menu.url })
-//         }
-//       } else if (menu.type === 2 && menu.url === currentPath) {
-//         breadPaths.push({ name: menu.name, path: menu.url })
-//         return menu
-//       }
-//     }
-//   }
-
-//   _recurseGetPath(userMenus)
-
-//   return breadPaths.reverse()
-// }
-
-// export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
-//   const breadcrumbs: IBreadcrumb[] = []
-//   pathMapToMenu(userMenus, currentPath, breadcrumbs)
-//   return breadcrumbs
-// }
-
-// // /main/system/role  -> type === 2 对应menu
-// export function pathMapToMenu(userMenus: any[], currentPath: string, breadcrumbs?: IBreadcrumb[]): any {
-//   for (const menu of userMenus) {
-//     if (menu.type === 1) {
-//       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
-//       if (findMenu) {
-//         breadcrumbs?.push({ name: menu.name, path: '/' })
-//         breadcrumbs?.push({ name: findMenu.name, path: '/' })
-//         return findMenu
-//       }
-//     } else if (menu.type === 2 && menu.url === currentPath) {
-//       return menu
-//     }
-//   }
-// }
-
-// // 根据菜单获取所有的按钮权限
-// export function menuMapToPermissions(userMenus: any[]) {
-//   const permissions: string[] = []
-
-//   const _recurseGetPermission = (menus: any[]) => {
-//     for (const menu of menus) {
-//       if (menu.type === 1 || menu.type === 2) {
-//         _recurseGetPermission(menu.children ?? [])
-//       } else if (menu.type === 3) {
-//         permissions.push(menu.permission)
-//       }
-//     }
-//   }
-//   _recurseGetPermission(userMenus)
-
-//   return permissions
-// }
-
-// export function getMenuChecks(menuList: any[]): number[] {
-//   const checks: number[] = []
-//   const _recurseGetChecked = (menuList: any[]) => {
-//     for (const menu of menuList) {
-//       if (menu.children) {
-//         _recurseGetChecked(menu.children)
-//       } else {
-//         checks.push(menu.id)
-//       }
-//     }
-//   }
-//   _recurseGetChecked(menuList)
-//   return checks
-// }
-
-// export { firstMenu, firstRoute }
+// /main/system/role  -> type === 2 对应menu
+export function pathMapToMenu(userMenus: any[], currentPath: string, breadcrumbs?: IBreadcrumb[]): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+      if (findMenu) {
+        breadcrumbs?.push({ name: menu.name, path: '/' })
+        breadcrumbs?.push({ name: findMenu.name, path: '/' })
+        return findMenu
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      return menu
+    }
+  }
+}

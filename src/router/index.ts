@@ -14,19 +14,19 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/main',
     name: 'main',
-    redirect: '/main/analysis/dashboard',
+    redirect: '/main/analysis/overview',
     component: () => import('@views/main/main.vue'),
     children: [
-      {
-        path: '/main/analysis/dashboard',
-        name: 'dashboard',
-        component: () => import('@/views/main/analysis/dashboard/dashboard.vue'),
-        children: []
-      },
       {
         path: '/main/analysis/overview',
         name: 'overview',
         component: () => import('@/views/main/analysis/overview/overview.vue'),
+        children: []
+      },
+      {
+        path: '/main/analysis/dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/main/analysis/dashboard/dashboard.vue'),
         children: []
       },
       {

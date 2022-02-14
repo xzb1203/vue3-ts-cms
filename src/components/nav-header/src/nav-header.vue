@@ -4,7 +4,7 @@
       <component :is="isFold ? 'expand' : 'fold'"></component>
     </el-icon>
     <div class="content">
-      <span>面包屑</span>
+      <nav-breadcrumb :breadcrumbs="breadcrumbs"></nav-breadcrumb>
       <nav-info></nav-info>
     </div>
   </div>
@@ -12,9 +12,39 @@
 
 <script setup lang="ts">
 import NavInfo from './nav-info.vue'
-
+import { useUserStore } from '@store'
+import NavBreadcrumb, { IBreadcrumb } from '@/base-ui/breadcrumb'
+import { useRoute } from 'vue-router'
+const { userMenus } = useUserStore()
+const route = useRoute()
 const emit = defineEmits(['fooldChange'])
-let isFold = ref(false)
+const isFold = ref(false)
+const breadcrumbs = ref<IBreadcrumb[]>([])
+
+function pathMapToMenu(userMenus: any[], currentPath: string): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
+      if (findMenu) {
+        breadcrumbs.value?.push({ name: menu.name })
+        breadcrumbs.value?.push({ name: findMenu.name })
+        return findMenu
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      return menu
+    }
+  }
+}
+pathMapToMenu(userMenus, route.path)
+
+watch(
+  () => route.path,
+  (currentPath) => {
+    breadcrumbs.value = []
+    pathMapToMenu(userMenus, currentPath)
+  }
+)
+
 const handleFoldClick = () => {
   isFold.value = !isFold.value
   emit('fooldChange', isFold.value)
