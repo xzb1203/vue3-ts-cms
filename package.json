@@ -78,7 +78,10 @@
         "element-plus/es/components/select/style/css",
         "element-plus/es/components/sub-menu/style/css",
         "element-plus/es/components/tab-pane/style/css",
+        "element-plus/es/components/table-column/style/css",
+        "element-plus/es/components/table/style/css",
         "element-plus/es/components/tabs/style/css",
+        "element-plus/es/components/tag/style/css",
         "pinia",
         "vue",
         "vue-router"
