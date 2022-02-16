@@ -49,6 +49,8 @@
       "include": [
         "@element-plus/icons-vue",
         "axios",
+        "dayjs",
+        "dayjs/plugin/utc",
         "element-plus",
         "element-plus/es",
         "element-plus/es/components/aside/style/css",

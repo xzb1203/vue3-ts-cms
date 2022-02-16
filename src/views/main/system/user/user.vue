@@ -7,6 +7,12 @@
           <el-tag v-if="scope.row.enable">启用</el-tag>
           <el-tag v-else>禁用</el-tag>
         </template>
+        <template #createAt="scope">
+          {{ $filters.formatTime(scope.row.createAt) }}
+        </template>
+        <template #updateAt="scope">
+          {{ $filters.formatTime(scope.row.updateAt) }}
+        </template>
       </hy-table>
     </div>
   </div>
