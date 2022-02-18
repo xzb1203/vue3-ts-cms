@@ -60,6 +60,7 @@
         "element-plus/es/components/button/style/css",
         "element-plus/es/components/checkbox/style/css",
         "element-plus/es/components/col/style/css",
+        "element-plus/es/components/config-provider/style/css",
         "element-plus/es/components/container/style/css",
         "element-plus/es/components/date-picker/style/css",
         "element-plus/es/components/dropdown-item/style/css",
@@ -76,6 +77,7 @@
         "element-plus/es/components/menu/style/css",
         "element-plus/es/components/message/style/css",
         "element-plus/es/components/option/style/css",
+        "element-plus/es/components/pagination/style/css",
         "element-plus/es/components/row/style/css",
         "element-plus/es/components/select/style/css",
         "element-plus/es/components/sub-menu/style/css",
@@ -84,6 +86,7 @@
         "element-plus/es/components/table/style/css",
         "element-plus/es/components/tabs/style/css",
         "element-plus/es/components/tag/style/css",
+        "element-plus/lib/locale/lang/zh-cn",
         "pinia",
         "vue",
         "vue-router"

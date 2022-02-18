@@ -1,7 +1,14 @@
 <template>
-  <div>role</div>
+  <div class="role">
+    <page-search :searchFormConfig="searchFormConfig" />
+    <page-content :contentTableConfig="contentTableConfig" pageName="role"></page-content>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PageSearch from '@/components/page-search'
+import PageContent from '@/components/page-content'
 
-<style scoped lang="scss"></style>
+import { searchFormConfig } from './config/search.config'
+import { contentTableConfig } from './config/content.config'
+</script>
