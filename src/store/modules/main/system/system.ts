@@ -6,7 +6,9 @@ export const useSystemStore = defineStore('system', {
     usersList: [],
     usersCount: 0,
     roleList: [],
-    roleCount: 0
+    roleCount: 0,
+    goodsList: [],
+    goodsCount: 0
   }),
   actions: {
     async getPageListAction(payload: any) {

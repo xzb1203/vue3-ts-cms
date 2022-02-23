@@ -5,8 +5,8 @@
     </template>
     <template #footer>
       <div class="text-right mr-2.5rem">
-        <el-button>重置</el-button>
-        <el-button type="primary">搜索</el-button>
+        <el-button @click="handleResetClick">重置</el-button>
+        <el-button type="primary" @click="handleQueryClick">搜索</el-button>
       </div>
     </template>
   </hy-form>
@@ -20,13 +20,22 @@ const props = defineProps({
     reuqired: true
   }
 })
-const formData = ref({
-  id: '',
-  name: '',
-  password: '',
-  sport: '',
-  createTime: ''
-})
+const emit = defineEmits(['resetBtnClick', 'queryBtnClick'])
+const formItems = props.searchFormConfig?.formItems ?? []
+const formOriginData: any = ref({})
+for (const item of formItems) {
+  formOriginData.value[item.field] = ''
+}
+const formData = ref(formOriginData.value)
+
+const handleResetClick = () => {
+  //todo
+  formData.value = {}
+  emit('resetBtnClick')
+}
+const handleQueryClick = () => {
+  emit('queryBtnClick', formData.value)
+}
 </script>
 
 <style scoped lang="scss"></style>
