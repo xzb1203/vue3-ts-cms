@@ -5,7 +5,7 @@
       <el-row>
         <template v-for="item in formItems" :key="item.label">
           <el-col :span="8" v-bind="colLayout" :rules="item.rules" :style="itemStyle">
-            <el-form-item :label="item.label">
+            <el-form-item :label="item.label" v-if="!item.isHidden">
               <template v-if="item.type === 'input' || item.type === 'password'">
                 <el-input
                   :placeholder="item.placeholder"
@@ -14,11 +14,7 @@
                 ></el-input>
               </template>
               <template v-else-if="item.type === 'select'">
-                <el-select
-                  :placeholder="item.placeholder"
-                  class="w-full"
-                  v-model="formData[item.field]"
-                >
+                <el-select :placeholder="item.placeholder" class="w-full" v-model="formData[item.field]">
                   <el-option v-for="option in item.options" :value="option.value">
                     {{ option.title }}
                   </el-option>

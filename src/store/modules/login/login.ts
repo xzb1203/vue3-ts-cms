@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { UserState } from './types'
 import localCache from '@/utils/cache'
 import router from '@/router'
-// import { menuMapToRoutes } from '@/utils/map-menu'
+import { menuMapToRoutes, mapMenusToPermissions } from '@/utils/map-menu'
 
 import { accountLoginRequest, getUserById, getUserMenus } from '@/service/login/login'
 
@@ -28,6 +28,10 @@ export const useUserStore = defineStore('user', {
       //   router.addRoute('main', route)
       // })
       // console.log(routes)
+
+      // 获取用户按钮的权限
+      const permissions = mapMenusToPermissions(userMenus)
+      this.permissions = permissions
     },
     async setAccountLoginAction(account: { name: string; password: string }) {
       //用户登录
