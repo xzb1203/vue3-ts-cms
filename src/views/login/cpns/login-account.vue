@@ -13,7 +13,8 @@
 import { PropType } from 'vue'
 import { Account } from '../types'
 import localCache from '@/utils/cache'
-import { useUserStore } from '@store'
+import { useUserStore } from '@/store'
+
 const props = defineProps({
   account: {
     type: Object as PropType<Account>,
@@ -38,7 +39,7 @@ const accountRules = {
 const formRef = ref<InstanceType<typeof ElForm>>()
 const accountLoginAction = (isKeep: boolean) => {
   // 1.验证是否成功
-  formRef.value?.validate((valid) => {
+  formRef.value?.validate((valid: any) => {
     if (valid) {
       // 登录逻辑
       const name = props.account.name
@@ -50,7 +51,6 @@ const accountLoginAction = (isKeep: boolean) => {
       }
 
       // 登录
-      console.log('请求登录接口')
       setAccountLoginAction({ ...props.account })
     } else {
       ElMessage.error('账号或者密码错误~')

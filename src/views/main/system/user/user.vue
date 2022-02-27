@@ -26,8 +26,7 @@ import { modalConfig } from './config/modal.config'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
 
-// pageModal相关的hook逻辑
-// 1.处理密码的逻辑
+// 处理密码的逻辑
 const newCallback = () => {
   const passwordItem = modalConfig.formItems.find((item) => item.field === 'password')
   passwordItem!.isHidden = false

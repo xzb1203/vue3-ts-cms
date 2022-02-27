@@ -1,16 +1,23 @@
 <template>
-  <div class="main">
-    <el-container class="main-content">
+  <div class="fixed top-0 left-0 w-full h-full">
+    <el-container class="h-full">
       <el-aside :width="isCollapse ? '60px' : '210px'">
         <nav-menu :collapse="isCollapse" />
       </el-aside>
-      <el-container class="page">
-        <el-header class="page-header">
+      <el-container class="h-full">
+        <el-header class="!h-48px">
           <nav-header @fooldChange="handleFoldChange" />
         </el-header>
         <el-main class="page-content">
-          <div class="content p-5">
-            <router-view></router-view>
+          <div class="h-full bg-white rounded-8px p-5">
+            <router-view class="router-view" v-slot="{ Component }">
+              <!-- transition只能用于单元素包裹的节点上 -->
+              <transition name="slide-left" mode="out-in">
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </router-view>
           </div>
         </el-main>
       </el-container>
@@ -29,27 +36,8 @@ const handleFoldChange = (isFold: boolean) => {
 </script>
 
 <style lang="scss" scoped>
-.main {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.main-content,
-.page {
-  height: 100%;
-}
-
 .page-content {
   height: calc(100% - 48px);
-
-  .content {
-    height: 100%;
-    background-color: #fff;
-    border-radius: 8px;
-  }
 }
 
 .el-header,
@@ -58,10 +46,6 @@ const handleFoldChange = (isFold: boolean) => {
   color: #333;
   text-align: center;
   align-items: center;
-}
-
-.el-header {
-  height: 48px !important;
 }
 
 .el-aside {
@@ -84,5 +68,28 @@ const handleFoldChange = (isFold: boolean) => {
   color: #333;
   text-align: center;
   background-color: #f0f2f5;
+}
+
+.slide-left-enter-from {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.slide-left-enter-to {
+  transform: translateX(0px);
+}
+
+.slide-left-leave-from {
+  transform: translateX(0);
+}
+
+.slide-left-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.3s;
 }
 </style>

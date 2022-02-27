@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/cache'
-
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -91,6 +92,7 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 router.beforeEach((to) => {
+  NProgress.start()
   if (to.path !== '/login') {
     const token = localCache.getCache('token')
     if (!token) {
@@ -101,6 +103,9 @@ router.beforeEach((to) => {
     //   console.log(firstRoute)
     //   return firstRoute?.path
     // }
+    NProgress.done()
+  } else {
+    NProgress.done()
   }
 })
 export default router

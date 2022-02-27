@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.25.0",
     "element-plus": "^2.0.1",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.0-rc.10",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
@@ -20,6 +21,7 @@
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
     "@types/node": "^17.0.17",
+    "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^2.0.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
@@ -74,6 +76,7 @@
         "element-plus/es/components/image/style/css",
         "element-plus/es/components/input/style/css",
         "element-plus/es/components/link/style/css",
+        "element-plus/es/components/loading/style/css",
         "element-plus/es/components/main/style/css",
         "element-plus/es/components/menu-item/style/css",
         "element-plus/es/components/menu/style/css",
@@ -90,6 +93,7 @@
         "element-plus/es/components/tabs/style/css",
         "element-plus/es/components/tag/style/css",
         "element-plus/lib/locale/lang/zh-cn",
+        "nprogress",
         "pinia",
         "vue",
         "vue-router"

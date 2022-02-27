@@ -9,6 +9,7 @@ import { accountLoginRequest, getUserById, getUserMenus } from '@/service/login/
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     token: '',
+    loginLoading: false,
     userInfo: {},
     userMenus: {},
     permissions: []
@@ -34,6 +35,7 @@ export const useUserStore = defineStore('user', {
       this.permissions = permissions
     },
     async setAccountLoginAction(account: { name: string; password: string }) {
+      this.loginLoading = true
       //用户登录
       const loginResult = await accountLoginRequest(account)
       const { id, token } = loginResult
@@ -47,6 +49,7 @@ export const useUserStore = defineStore('user', {
 
       // 3.用户菜单树
       const userMenus = await getUserMenus(userInfo.role.id)
+      this.loginLoading = false
       this.setUserMenus(userMenus)
       localCache.setCache('userMenus', userMenus)
       // 跳转到首页
