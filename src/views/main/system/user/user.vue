@@ -12,7 +12,12 @@
       :contentTableConfig="contentTableConfig"
       pageName="users"
     ></page-content>
-    <page-modal :defaultInfo="defaultInfo" ref="pageModalRef" pageName="users" :modalConfig="modalConfig"></page-modal>
+    <page-modal
+      :defaultInfo="defaultInfo"
+      ref="pageModalRef"
+      pageName="users"
+      :modalConfig="modalConfigRef"
+    ></page-modal>
   </div>
 </template>
 
@@ -25,7 +30,10 @@ import { contentTableConfig } from './config/content.config'
 import { modalConfig } from './config/modal.config'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
-
+import { useSystemStore } from '@/store'
+const { getInitialDataAction } = useSystemStore()
+const entireDepartment = computed(() => useSystemStore().entireDepartment)
+const entireRole = computed(() => useSystemStore().entireRole)
 // 处理密码的逻辑
 const newCallback = () => {
   const passwordItem = modalConfig.formItems.find((item) => item.field === 'password')
@@ -37,4 +45,20 @@ const editCallback = () => {
 }
 const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
 const [pageModalRef, defaultInfo, handleNewData, handleEditData] = usePageModal(newCallback, editCallback)
+//设置下拉选项
+const modalConfigRef = computed(() => {
+  const departmentItem = modalConfig.formItems.find((item) => item.field === 'departmentId')
+  departmentItem!.options = entireDepartment.value.map((item) => {
+    return { title: item.name, value: item.id }
+  })
+  const roleItem = modalConfig.formItems.find((item) => item.field === 'roleId')
+  roleItem!.options = entireRole.value.map((item) => {
+    return { title: item.name, value: item.id }
+  })
+  return modalConfig
+})
+
+onMounted(() => {
+  getInitialDataAction()
+})
 </script>

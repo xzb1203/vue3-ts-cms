@@ -10,7 +10,9 @@ export const useSystemStore = defineStore('system', {
     goodsList: [],
     goodsCount: 0,
     menuList: [],
-    menuCount: 0
+    menuCount: 0,
+    entireDepartment: [],
+    entireRole: []
   }),
   actions: {
     async getPageListAction(payload: any) {
@@ -36,6 +38,20 @@ export const useSystemStore = defineStore('system', {
         type: 'success',
         message: '删除成功!'
       })
+    },
+    async getInitialDataAction() {
+      const departmentResult = await getPageListData('/department/list', {
+        offset: 0,
+        size: 1000
+      })
+      const roleResult = await getPageListData('/role/list', {
+        offset: 0,
+        size: 1000
+      })
+      this.entireDepartment = departmentResult.list
+      this.entireRole = departmentResult.list
+      console.log(this.entireDepartment, 'departmentResult')
+      console.log(this.entireRole, 'roleResult')
     }
   }
 })
