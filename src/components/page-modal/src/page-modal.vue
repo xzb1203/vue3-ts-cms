@@ -5,7 +5,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary"> 确 定 </el-button>
+          <el-button type="primary" @click="handleConfirmClick"> 确 定 </el-button>
         </span>
       </template>
     </el-dialog>
@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import HyForm from '@/base-ui/form'
+import { useSystemStore } from '@/store'
 
 const props = defineProps({
   modalConfig: {
@@ -29,8 +30,10 @@ const props = defineProps({
     require: true
   }
 })
+const { createPageData, editPageDataAction } = useSystemStore()
 const dialogVisible = ref(false)
 const formData = ref<any>({ name: '' })
+
 watch(
   () => props.defaultInfo,
   (newValue) => {
@@ -39,6 +42,22 @@ watch(
     }
   }
 )
+const handleConfirmClick = () => {
+  if (Object.keys(props.defaultInfo).length) {
+    editPageDataAction({
+      pageName: props.pageName,
+      editData: { ...formData.value },
+      id: props.defaultInfo.id
+    })
+  } else {
+    createPageData({
+      pageName: props.pageName,
+      newData: { ...formData.value }
+    })
+  }
+  dialogVisible.value = false
+}
+
 defineExpose({
   dialogVisible
 })

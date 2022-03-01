@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ISystemState } from './types'
-import { getPageListData, deletePageData } from '@/service/main/system/system'
+import { getPageListData, deletePageData, createPageData, editPageData } from '@/service/main/system/system'
 export const useSystemStore = defineStore('system', {
   state: (): ISystemState => ({
     usersList: [],
@@ -16,6 +16,7 @@ export const useSystemStore = defineStore('system', {
   }),
   actions: {
     async getPageListAction(payload: any) {
+      console.log(payload, 'payload')
       const { list, totalCount } = await getPageListData(payload.pageUrl, payload.queryInfo)
       this[payload.pageName + 'List'] = list
       this[payload.pageName + 'Count'] = totalCount
@@ -49,9 +50,33 @@ export const useSystemStore = defineStore('system', {
         size: 1000
       })
       this.entireDepartment = departmentResult.list
-      this.entireRole = departmentResult.list
-      console.log(this.entireDepartment, 'departmentResult')
-      console.log(this.entireRole, 'roleResult')
+      this.entireRole = roleResult.list
+    },
+    async createPageData(payload: any) {
+      const { pageName, newData } = payload
+      const pageUrl = `/${pageName}`
+      await createPageData(pageUrl, newData)
+      this.getPageListAction({
+        pageUrl: `/${pageName}/list`,
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    async editPageDataAction(payload: any) {
+      const { pageName, editData, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+      await editPageData(pageUrl, editData)
+      this.getPageListAction({
+        pageUrl: `/${pageName}/list`,
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
     }
   }
 })

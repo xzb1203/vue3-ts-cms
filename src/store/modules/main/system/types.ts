@@ -9,4 +9,5 @@ export interface ISystemState {
   menuCount: number
   entireDepartment: any[]
   entireRole: any[]
+  [name: string]: any
 }
