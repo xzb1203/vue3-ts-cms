@@ -14,13 +14,13 @@ export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
     routePath.push(key)
   }
 
-  routePath.forEach(async (key: string) => {
-    if (key.indexOf('./main.ts') !== -1) return
-    let cpnsName = key.split('.')[2]
-    const route = await import('..' + cpnsName)
-    localRoutes.push(route.default)
-    console.log(localRoutes, '为什么')
-  })
+  // routePath.forEach(async (key: string) => {
+  //   if (key.indexOf('./main.ts') !== -1) return
+  //   let cpnsName = key.split('.')[2]
+  //   const route = await import('..' + cpnsName)
+  //   localRoutes.push(route.default)
+  //   console.log(localRoutes, '为什么')
+  // })
   // 2.菜单的映射
   const _recurseGetRoute = (menus: any[]) => {
     for (const menu of menus) {
@@ -47,7 +47,11 @@ export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
   return breadcrumbs
 }
 
-export function pathMapToMenu(userMenus: any[], currentPath: string, breadcrumbs?: IBreadcrumb[]): any {
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadcrumb[]
+): any {
   for (const menu of userMenus) {
     if (menu.type === 1) {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)

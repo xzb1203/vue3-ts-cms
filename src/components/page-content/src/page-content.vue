@@ -1,6 +1,11 @@
 <template>
   <div class="mt-2">
-    <hy-table :listData="listData" v-bind="contentTableConfig" :listCount="usersCount" v-model:page="pageInfo">
+    <hy-table
+      :listData="listData"
+      v-bind="contentTableConfig"
+      :listCount="usersCount"
+      v-model:page="pageInfo"
+    >
       <template #headerHandler>
         <el-button type="primary" v-if="isCreate" @click="handleNewClick">新建数据</el-button>
       </template>
@@ -16,8 +21,16 @@
       </template>
       <template #handler="scope">
         <div class="handle-btns">
-          <el-button type="text" :icon="Edit" v-if="isUpdate" @click="handleEditClick(scope.row)">编辑</el-button>
-          <el-button type="text" :icon="Delete" v-if="isDelete" @click="handleDeleteClick(scope.row)">删除</el-button>
+          <el-button type="text" :icon="Edit" v-if="isUpdate" @click="handleEditClick(scope.row)"
+            >编辑</el-button
+          >
+          <el-button
+            type="text"
+            :icon="Delete"
+            v-if="isDelete"
+            @click="handleDeleteClick(scope.row)"
+            >删除</el-button
+          >
         </div>
       </template>
       <!-- 在page-content中动态插入剩余的插槽 -->

@@ -31,7 +31,6 @@ import { modalConfig } from './config/modal.config'
 import { usePageSearch } from '@/hooks/use-page-search'
 import { usePageModal } from '@/hooks/use-page-modal'
 import { useSystemStore } from '@/store'
-const { getInitialDataAction } = useSystemStore()
 const entireDepartment = computed(() => useSystemStore().entireDepartment)
 const entireRole = computed(() => useSystemStore().entireRole)
 // 处理密码的逻辑
@@ -44,7 +43,10 @@ const editCallback = () => {
   passwordItem!.isHidden = true
 }
 const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
-const [pageModalRef, defaultInfo, handleNewData, handleEditData] = usePageModal(newCallback, editCallback)
+const [pageModalRef, defaultInfo, handleNewData, handleEditData] = usePageModal(
+  newCallback,
+  editCallback
+)
 //设置下拉选项
 const modalConfigRef = computed(() => {
   const departmentItem = modalConfig.formItems.find((item) => item.field === 'departmentId')
@@ -56,9 +58,5 @@ const modalConfigRef = computed(() => {
     return { title: item.name, value: item.id }
   })
   return modalConfig
-})
-
-onMounted(() => {
-  getInitialDataAction()
 })
 </script>

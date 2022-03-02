@@ -27,3 +27,9 @@ export function editPageData(url: string, editData: any) {
     data: editData
   })
 }
+export function getPageList(pageUrl: string, queryInfo: any) {
+  return hyRequest.post({
+    url: pageUrl,
+    data: queryInfo
+  })
+}

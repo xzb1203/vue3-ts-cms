@@ -1,6 +1,12 @@
 import { defineStore } from 'pinia'
 import { ISystemState } from './types'
-import { getPageListData, deletePageData, createPageData, editPageData } from '@/service/main/system/system'
+import {
+  getPageListData,
+  deletePageData,
+  createPageData,
+  editPageData,
+  getPageList
+} from '@/service/main/system/system'
 export const useSystemStore = defineStore('system', {
   state: (): ISystemState => ({
     usersList: [],
@@ -12,7 +18,8 @@ export const useSystemStore = defineStore('system', {
     menuList: [],
     menuCount: 0,
     entireDepartment: [],
-    entireRole: []
+    entireRole: [],
+    entireMenus: []
   }),
   actions: {
     async getPageListAction(payload: any) {
@@ -49,8 +56,11 @@ export const useSystemStore = defineStore('system', {
         offset: 0,
         size: 1000
       })
+      const entireMenusResult = await getPageList('/menu/list', {})
+
       this.entireDepartment = departmentResult.list
       this.entireRole = roleResult.list
+      this.entireMenus = entireMenusResult.list
     },
     async createPageData(payload: any) {
       const { pageName, newData } = payload

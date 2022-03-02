@@ -10,6 +10,7 @@ export interface IFormItem {
   isHidden?: boolean
 }
 export interface IForm {
+  title?: string
   formItems: IFormItem[]
   labelWidth?: string
   colLayout?: any

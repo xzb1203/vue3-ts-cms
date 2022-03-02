@@ -2,6 +2,7 @@
   <div class="page-modal">
     <el-dialog title="新建用户" v-model="dialogVisible" width="30%" center destroy-on-close>
       <hy-form v-bind="modalConfig" :formData="formData"></hy-form>
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
@@ -28,6 +29,10 @@ const props = defineProps({
   pageName: {
     type: String,
     require: true
+  },
+  otherInfo: {
+    type: Object,
+    default: () => ({})
   }
 })
 const { createPageData, editPageDataAction } = useSystemStore()

@@ -7,9 +7,25 @@
       </div>
     </slot>
   </div>
-  <el-table :data="listData" style="width: 100%" v-bind="childrenProps" @selection-change="handleSelectionChange">
-    <el-table-column v-if="showSelectColumn" type="selection" align="center" width="60"></el-table-column>
-    <el-table-column v-if="showIndexColumn" type="index" label="序号" align="center" width="80"></el-table-column>
+  <el-table
+    :data="listData"
+    style="width: 100%"
+    v-bind="childrenProps"
+    @selection-change="handleSelectionChange"
+  >
+    <el-table-column
+      v-if="showSelectColumn"
+      type="selection"
+      align="center"
+      width="60"
+    ></el-table-column>
+    <el-table-column
+      v-if="showIndexColumn"
+      type="index"
+      label="序号"
+      align="center"
+      width="80"
+    ></el-table-column>
     <template v-for="propItem in propList" :key="propItem.prop">
       <el-table-column v-bind="propItem" align="center">
         <template #default="scope">

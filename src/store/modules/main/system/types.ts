@@ -1,4 +1,6 @@
 export interface ISystemState {
+  [name: string]: any
+
   usersList: any[]
   usersCount: number
   roleList: any[]
@@ -9,5 +11,5 @@ export interface ISystemState {
   menuCount: number
   entireDepartment: any[]
   entireRole: any[]
-  [name: string]: any
+  entireMenus: any[]
 }
