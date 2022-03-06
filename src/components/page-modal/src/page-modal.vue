@@ -51,13 +51,13 @@ const handleConfirmClick = () => {
   if (Object.keys(props.defaultInfo).length) {
     editPageDataAction({
       pageName: props.pageName,
-      editData: { ...formData.value },
+      editData: { ...formData.value, ...props.otherInfo },
       id: props.defaultInfo.id
     })
   } else {
     createPageData({
       pageName: props.pageName,
-      newData: { ...formData.value }
+      newData: { ...formData.value, ...props.otherInfo }
     })
   }
   dialogVisible.value = false
