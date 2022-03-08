@@ -34,6 +34,7 @@ const handleResetClick = () => {
   emit('resetBtnClick')
 }
 const handleQueryClick = () => {
+  console.log(formData.value, '咋回事')
   emit('queryBtnClick', formData.value)
 }
 </script>

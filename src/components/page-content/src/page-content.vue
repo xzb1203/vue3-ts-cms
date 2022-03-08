@@ -70,7 +70,7 @@ const { getPageListAction, deletePageDataAction } = useSystemStore()
 const usersCount = computed(() => useSystemStore().usersCount)
 const getPageData = (queryInfo: any = {}) => {
   if (!isQuery) return
-
+  console.log(queryInfo, 'queryInfo')
   getPageListAction({
     pageUrl: `/${props.pageName}/list`,
     pageName: props.pageName,

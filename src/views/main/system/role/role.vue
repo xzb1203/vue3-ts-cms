@@ -63,7 +63,7 @@ const [pageModalRef, defaultInfo, handleNewData, handleEditData] = usePageModal(
   undefined,
   editCallback
 )
-const [pageContentRef, handleQueryClick, handleResetClick] = usePageSearch()
+const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
 
 const entireMenus = computed(() => useSystemStore().entireMenus)
 const otherInfo = ref({})
