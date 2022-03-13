@@ -7,25 +7,17 @@ let firstRoute: RouteRecordRaw | undefined = undefined
 export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = []
   // 1.读取本地所有的路由
-  let localRoutes: any = []
   const routeFiles: any = import.meta.globEager('../router/main/**/*.ts')
   const routePath: any = []
   for (let key in routeFiles) {
-    routePath.push(key)
+    routePath.push(routeFiles[key].default)
   }
 
-  // routePath.forEach(async (key: string) => {
-  //   if (key.indexOf('./main.ts') !== -1) return
-  //   let cpnsName = key.split('.')[2]
-  //   const route = await import('..' + cpnsName)
-  //   localRoutes.push(route.default)
-  //   console.log(localRoutes, '为什么')
-  // })
   // 2.菜单的映射
   const _recurseGetRoute = (menus: any[]) => {
     for (const menu of menus) {
       if (menu.type === 2) {
-        const route = localRoutes.find((route: any) => route.path === menu.url)
+        const route = routePath.find((route: any) => route.path === menu.url)
         if (route) routes.push(route)
         if (!firstRoute && !firstMenu) {
           firstMenu = menu
@@ -37,7 +29,6 @@ export function menuMapToRoutes(userMenus: any[]): RouteRecordRaw[] {
     }
   }
   _recurseGetRoute(userMenus)
-
   return routes
 }
 

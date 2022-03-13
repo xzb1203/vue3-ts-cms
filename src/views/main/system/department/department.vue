@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>部门管理</h1>
     <page-search
       :searchFormConfig="searchFormConfig"
       @resetBtnClick="handleResetClick"
       @queryBtnClick="handleQueryClick"
-    />
+    ></page-search>
+
     <page-content
       pageName="department"
       ref="pageContentRef"
