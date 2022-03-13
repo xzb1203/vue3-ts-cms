@@ -1,14 +1,19 @@
 export interface ISystemState {
   [name: string]: any
 
+  usersTotalCount: number
   usersList: any[]
-  usersCount: number
+  departmentTotalCount: number
+  departmentList: any[]
+  roleTotalCount: number
   roleList: any[]
-  roleCount: number
-  goodsList: any[]
-  goodsCount: number
   menuList: any[]
-  menuCount: number
+  categoryTotalCount: number
+  categoryList: any[]
+  goodsTotalCount: number
+  goodsList: any[]
+  storyTotalCount: number
+  storyList: any[]
   entireDepartment: any[]
   entireRole: any[]
   entireMenus: any[]

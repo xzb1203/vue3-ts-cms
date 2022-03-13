@@ -9,14 +9,19 @@ import {
 } from '@/service/main/system/system'
 export const useSystemStore = defineStore('system', {
   state: (): ISystemState => ({
+    usersTotalCount: 0,
     usersList: [],
-    usersCount: 0,
+    departmentTotalCount: 0,
+    departmentList: [],
+    roleTotalCount: 0,
     roleList: [],
-    roleCount: 0,
-    goodsList: [],
-    goodsCount: 0,
     menuList: [],
-    menuCount: 0,
+    categoryTotalCount: 0,
+    categoryList: [],
+    goodsTotalCount: 0,
+    goodsList: [],
+    storyTotalCount: 0,
+    storyList: [],
     entireDepartment: [],
     entireRole: [],
     entireMenus: []
@@ -57,7 +62,6 @@ export const useSystemStore = defineStore('system', {
         size: 1000
       })
       const entireMenusResult = await getPageList('/menu/list', {})
-
       this.entireDepartment = departmentResult.list
       this.entireRole = roleResult.list
       this.entireMenus = entireMenusResult.list

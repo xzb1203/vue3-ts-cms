@@ -1,18 +1,48 @@
 <template>
-  <div class="department">
-    <h2>department</h2>
+  <div>
+    <h1>部门管理</h1>
+    <page-search
+      :searchFormConfig="searchFormConfig"
+      @resetBtnClick="handleResetClick"
+      @queryBtnClick="handleQueryClick"
+    />
+    <page-content
+      pageName="department"
+      ref="pageContentRef"
+      :contentTableConfig="contentTableConfig"
+      @newBtnClick="handleNewData"
+      @editBtnClick="handleEditData"
+    ></page-content>
+
+    <page-modal
+      ref="pageModalRef"
+      :defaultInfo="modalInfo"
+      :modalConfig="modalConfigRef"
+      pageName="department"
+    ></page-modal>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import PageSearch from '@/components/page-search'
+import { searchFormConfig } from './config/search.config'
+import { contentTableConfig } from './config/content.config'
+import { usePageModal } from '@/hooks/use-page-modal'
+import { usePageSearch } from '@/hooks/use-page-search'
+import { modalConfig } from './config/modal.config'
+import { useSystemStore } from '@/store'
+const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
 
-export default defineComponent({
-  name: 'department',
-  setup() {
-    return {}
-  }
+const [pageModalRef, modalInfo, handleNewData, handleEditData] = usePageModal()
+const entireDepartment = computed(() => useSystemStore().entireDepartment)
+console.log(entireDepartment)
+const modalConfigRef = computed(() => {
+  const parentIdItem = modalConfig.formItems?.find((item) => item.field === 'parentId')
+  parentIdItem!.options = entireDepartment.value.map((item: any) => {
+    return { title: item.name, value: item.id }
+  })
+  return modalConfig
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

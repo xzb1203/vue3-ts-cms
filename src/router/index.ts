@@ -103,9 +103,9 @@ router.beforeEach((to) => {
     //   console.log(firstRoute)
     //   return firstRoute?.path
     // }
-    NProgress.done()
-  } else {
-    NProgress.done()
   }
+})
+router.afterEach(() => {
+  NProgress.done()
 })
 export default router

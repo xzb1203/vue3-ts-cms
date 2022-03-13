@@ -37,6 +37,7 @@ const handleFoldChange = (isFold: boolean) => {
 
 <style lang="scss" scoped>
 .page-content {
+  text-align: left !important;
   height: calc(100% - 48px);
 }
 

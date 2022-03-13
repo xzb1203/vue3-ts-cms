@@ -14,9 +14,10 @@
 
 <script setup lang="ts">
 import HyForm from '@/base-ui/form'
+import { PropType } from 'vue'
 const props = defineProps({
   searchFormConfig: {
-    type: Object,
+    type: Object as PropType<any>,
     reuqired: true
   }
 })

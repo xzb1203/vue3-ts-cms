@@ -50,11 +50,11 @@ const [pageModalRef, defaultInfo, handleNewData, handleEditData] = usePageModal(
 //设置下拉选项
 const modalConfigRef = computed(() => {
   const departmentItem = modalConfig.formItems.find((item) => item.field === 'departmentId')
-  departmentItem!.options = entireDepartment.value.map((item) => {
+  departmentItem!.options = entireDepartment.value.map((item: any) => {
     return { title: item.name, value: item.id }
   })
   const roleItem = modalConfig.formItems.find((item) => item.field === 'roleId')
-  roleItem!.options = entireRole.value.map((item) => {
+  roleItem!.options = entireRole.value.map((item: any) => {
     return { title: item.name, value: item.id }
   })
   return modalConfig

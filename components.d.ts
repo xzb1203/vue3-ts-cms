@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BarEchart: typeof import('./src/components/page-echarts/src/bar-echart.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -15,6 +16,8 @@ declare module 'vue' {
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    ElDescriptions: typeof import('element-plus/es')['ElDescriptions']
+    ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
@@ -39,18 +42,22 @@ declare module 'vue' {
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
-    ElTree: typeof import('element-plus/es')['ElTree']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    LineEchart: typeof import('./src/components/page-echarts/src/line-echart.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
+    MapEchart: typeof import('./src/components/page-echarts/src/map-echart.vue')['default']
+    MapEchatr: typeof import('./src/components/page-echarts/src/map-echatr.vue')['default']
     NavHeader: typeof import('./src/components/nav-header/src/nav-header.vue')['default']
     NavInfo: typeof import('./src/components/nav-header/src/nav-info.vue')['default']
     NavMenu: typeof import('./src/components/nav-menu/src/nav-menu.vue')['default']
     PageContent: typeof import('./src/components/page-content/src/page-content.vue')['default']
     PageModal: typeof import('./src/components/page-modal/src/page-modal.vue')['default']
     PageSearch: typeof import('./src/components/page-search/src/page-search.vue')['default']
-    PieChart: typeof import('./src/components/page-echarts/src/pie-chart.vue')['default']
     PieEchart: typeof import('./src/components/page-echarts/src/pie-echart.vue')['default']
+    RoseEchart: typeof import('./src/components/page-echarts/src/rose-echart.vue')['default']
+    StatisticalPanel: typeof import('./src/components/statistical-panel/src/statistical-panel.vue')['default']
     SvgIcon: typeof import('./src/components/svg-icon/src/svg-icon.vue')['default']
   }
 }
 
-export {}
+export { }
