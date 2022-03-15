@@ -14,7 +14,7 @@ import { PropType } from 'vue'
 import { Account } from '../types'
 import localCache from '@/utils/cache'
 import { useUserStore } from '@/store'
-
+import { ElForm } from 'element-plus'
 const props = defineProps({
   account: {
     type: Object as PropType<Account>,

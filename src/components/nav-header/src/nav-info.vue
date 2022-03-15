@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@store'
+import { useUserStore } from '@/store'
 import localCache from '@/utils/cache'
 import { useRouter } from 'vue-router'
 const router = useRouter()

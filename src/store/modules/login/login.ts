@@ -3,9 +3,8 @@ import { UserState } from './types'
 import localCache from '@/utils/cache'
 import router from '@/router'
 import { menuMapToRoutes, mapMenusToPermissions } from '@/utils/map-menu'
-
 import { accountLoginRequest, getUserById, getUserMenus } from '@/service/login/login'
-
+import { ElMessage } from 'element-plus'
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     token: '',
@@ -36,6 +35,12 @@ export const useUserStore = defineStore('user', {
       this.loginLoading = true
       //用户登录
       const loginResult = await accountLoginRequest(account)
+      console.log(loginResult)
+      if (!loginResult) {
+        this.loginLoading = false
+        ElMessage.warning('用户名或密码错误!')
+        return
+      }
       const { id, token } = loginResult
       this.setToken(token)
       localCache.setCache('token', token)

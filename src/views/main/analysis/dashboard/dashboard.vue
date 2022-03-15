@@ -1,13 +1,41 @@
 <template>
   <div class="dashboard">
-    <el-row :gutter="10">
+    <el-row
+      :gutter="10"
+      v-motion
+      :initial="{
+        opacity: 0,
+        y: 100
+      }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 100
+        }
+      }"
+    >
       <template v-for="item in topPanelData" :key="item.title">
         <el-col :md="12" :lg="6" :xl="6">
           <statistical-panel :panelData="item" />
         </el-col>
       </template>
     </el-row>
-    <el-row :gutter="10">
+    <el-row
+      :gutter="10"
+      v-motion
+      :initial="{
+        opacity: 0,
+        y: 100
+      }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 200
+        }
+      }"
+    >
       <el-col :span="7">
         <hy-card title="分类商品数量(饼图)">
           <pie-echart :pieData="categoryGoodsCount"></pie-echart>
@@ -25,7 +53,22 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="10" class="mt-20px">
+    <el-row
+      :gutter="10"
+      class="mt-20px"
+      v-motion
+      :initial="{
+        opacity: 0,
+        y: 100
+      }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay: 400
+        }
+      }"
+    >
       <el-col :span="12">
         <hy-card title="分类商品的销量">
           <line-echart v-bind="categoryGoodsSale"></line-echart>

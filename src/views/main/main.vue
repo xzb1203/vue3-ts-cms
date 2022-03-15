@@ -13,9 +13,9 @@
             <router-view class="router-view" v-slot="{ Component }">
               <!-- transition只能用于单元素包裹的节点上 -->
               <transition name="slide-left" mode="out-in">
-                <keep-alive>
-                  <component :is="Component" />
-                </keep-alive>
+                <!-- <keep-alive> -->
+                <component :is="Component" />
+                <!-- </keep-alive> -->
               </transition>
             </router-view>
           </div>
@@ -28,11 +28,13 @@
 <script setup lang="ts">
 import NavMenu from '@/components/nav-menu'
 import NavHeader from '@/components/nav-header'
+import { useSystemStore } from '@/store'
+
 const isCollapse = ref(false)
 const handleFoldChange = (isFold: boolean) => {
   isCollapse.value = isFold
-  console.log(isFold)
 }
+useSystemStore().getInitialDataAction()
 </script>
 
 <style lang="scss" scoped>

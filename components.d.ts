@@ -57,7 +57,8 @@ declare module 'vue' {
     RoseEchart: typeof import('./src/components/page-echarts/src/rose-echart.vue')['default']
     StatisticalPanel: typeof import('./src/components/statistical-panel/src/statistical-panel.vue')['default']
     SvgIcon: typeof import('./src/components/svg-icon/src/svg-icon.vue')['default']
+    SvgIconify: typeof import('./src/components/svg-iconify/src/svg-iconify.vue')['default']
   }
 }
 
-export {}
+export { }
